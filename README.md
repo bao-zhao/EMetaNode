@@ -1,20 +1,18 @@
 # Compact IoT Board for Electromechanical Metamaterials
 
-![IoT Board](pics/PCB1.png) *(Replace with actual image path)*
-
-This repository contains the open-source design files for a compact, self-powered IoT board featuring energy harvesting management, adjustable voltage regulation, and ultra-low-power Bluetooth Beacon functionality.
+![IoT Board](pics/PCB1.png) 
+This repository contains the open-source design files for a compact, self-powered IoT board featuring the SECE AC-DC interface circuit, the three-transistor energy management module for DC-DC conversion, and an ultra-low-power Bluetooth Beacon for sensing and transmission.
 
 ## Key Features
 
-- **Energy Harvesting Interface**: Compatible with SECE (Synchronous Electric Charge Extraction) interface circuits.
+- **Energy Harvesting Interface**: Compatible with the SECE (Synchronous Electric Charge Extraction) interface circuit andd the full bridge rectifier.
 - **Three-Transistor Energy Management**: 
   - Adjustable regulation voltage thresholds (`V_ON` and `V_OFF`)
   - Regulated output voltage ~2.3V (suitable for most IoT SoCs)
-  - Design based on depletion-mode n-channel MOSFET
 - **Ultra-Low-Power Bluetooth Beacon**:
-  - IN100 SoC for temperature and 3-axis acceleration sensing
+  - IN100 SoC for internal temperature and VCC sensing
   - BMA400 accelerometer via I²C
-  - Bluetooth 5 broadcast (channels 37-39) at 1s intervals
+  - Bluetooth broadcasting (channels 37-39) at 1s intervals
 - **Power-Saving Operation**:
   - Dynamic sleep/wake cycles
   - Load switch for external sensor power management
@@ -24,49 +22,44 @@ This repository contains the open-source design files for a compact, self-powere
 
 ## Repository Contents
 
-- `/hardware`:
+- `/PCB`:
   - PCB fabrication files (Gerber, BOM, etc.)
-  - Schematic (PDF and native format)
-  - 3D model files
-- `/firmware`:
+  - Schematic (PDF)
+- `/codes`:
   - IN100 configuration code
-  - Sensor interface code
-- `/documentation`:
-  - Detailed specifications
-  - Assembly guide
-  - Performance characteristics (see table below)
+  - Bluetooth sniffer (ESP32 series)
+- `/pics`:
+  - PCB 3D picture
 
 ## Technical Specifications
 
 | Parameter          | Value/Range       |
 |--------------------|-------------------|
-| Input Voltage Range | Depends on SECE interface |
+| Input Voltage Range| AC voltage >= 5V |
 | Regulated Output   | ~2.3V             |
-| Bluetooth Standard | Bluetooth 5       |
 | Broadcast Interval | 1 second          |
-| Sensors            | On-chip temperature, BMA400 3-axis accelerometer |
-| Sleep Current      | [Value] μA        |
-| Active Current     | [Value] mA        |
+| Sensors            | On-chip temperature, BMA400 3-axis accelerometer, etc. |
+| Sleep Current      | 700 nA        |
+| Active Current     | 10~30 mA        |
 
 ## Getting Started
 
 1. **Manufacturing**:
-   - Use the Gerber files in `/hardware` for PCB fabrication
+   - Use the Gerber files in `/PCB` for PCB fabrication
    - Refer to BOM for component sourcing
 
 2. **Assembly**:
-   - Follow the assembly guide in `/documentation`
+   - Follow the assembly guide in the referenced papers
    - Select `R5` for desired threshold voltage
 
 3. **Programming**:
-   - Flash the IN100 SoC using the firmware in `/firmware`
-   - Configure broadcast parameters as needed
+   - Configure the IN100 SoC using the codes in `/codes`
+   - Configure Bluetooth sniffer as needed
 
-## References
-
-- Energy management circuit based on:  
-  Teng et al. "Three-transistor design for adjustable regulation voltage thresholds" (2023)
-- IN100 SoC datasheet: [Manufacturer Documentation]
+## Citation
+If you use this open-source design in your research or project, please cite the following papers: 
+- Zhao, Bao, et al. "EMetaNode: Electromechanical Metamaterial Node for Broadband Vibration Attenuation and Self-powered Sensing"
+- Teng, Li, et al. "A three-transistor energy management circuit for energy-harvesting-powered iot devices." IEEE Internet of Things Journal 11.1 (2023): 1301-1310.
 
 ## License
 
