@@ -60,8 +60,8 @@ This repository contains the open-source design files for a compact, self-powere
 ## Citation
 
 If you use this open-source design in your research or project, please cite the following papers: 
+
 - Zhao, Bao, et al. "EMetaNode: Electromechanical Metamaterial Node for Broadband Vibration Attenuation and Self-powered Sensing"
-- Teng, Li, et al. "A three-transistor energy management circuit for energy-harvesting-powered iot devices." IEEE Internet of Things Journal 11.1 (2023): 1301-1310.
 
 ## License
 
