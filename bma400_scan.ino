@@ -10,8 +10,8 @@ BLEScan *pBLEScan;
 class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
   void onResult(BLEAdvertisedDevice advertisedDevice) {
     if (!advertisedDevice.haveName() || 
-        advertisedDevice.getName() != "BMA400_Data") {  // 完全匹配名称
-      return; // 如果不是 BMA400，直接退出
+        advertisedDevice.getName() != "BMA400_Data") {  
+      return; 
     }
 
     if (advertisedDevice.haveName()) {
