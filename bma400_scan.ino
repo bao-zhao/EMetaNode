@@ -4,16 +4,21 @@
 #include <BLEScan.h>
 #include <BLEAdvertisedDevice.h>
 
-int scanTime = 100;
+int scanTime = 1;
 BLEScan *pBLEScan;
 
 class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
   void onResult(BLEAdvertisedDevice advertisedDevice) {
+    if (!advertisedDevice.haveName() || 
+        advertisedDevice.getName() != "BMA400_Data") {  // 完全匹配名称
+      return; // 如果不是 BMA400，直接退出
+    }
+
     if (advertisedDevice.haveName()) {
       const char* deviceName = advertisedDevice.getName().c_str();
 
       if (strncmp(deviceName, "BMA400_Data", strlen(deviceName)) == 0) {
-        Serial.printf("RSSI: %i\n", advertisedDevice.getRSSI());
+        // Serial.printf("RSSI: %i\n", advertisedDevice.getRSSI());
 
         if (advertisedDevice.haveManufacturerData()) {
           String manufacturerDataString = advertisedDevice.getManufacturerData();
@@ -52,6 +57,7 @@ class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
             int16_t tempRaw = ((uint16_t)manufacturerData[9] << 8) | manufacturerData[10];
             float temperature = tempRaw / 100.0;  // unit = 0.01°C
             Serial.printf("Temperature: %.2f °C\n", temperature);
+            // Serial.printf("Voltage: %.2f\tX: %.2f\tY: %.2f\tZ: %.2f\tTemp: %.2f\n", voltage, xAcc, yAcc, zAcc, temperature);
           } else {
             Serial.println("Manufacturer data too short or too long!");
           }
@@ -63,20 +69,23 @@ class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("BLE scan sketch begin!");
+  // Serial.println("BLE scan sketch begin!");
   BLEDevice::init("");
   pBLEScan = BLEDevice::getScan();
   pBLEScan->setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks());
   pBLEScan->setActiveScan(true);
-  pBLEScan->setInterval(100);
-  pBLEScan->setWindow(99);
+  pBLEScan->setInterval(50);
+  pBLEScan->setWindow(49);
   // Start continuous scanning (non-blocking, infinite)
-  pBLEScan->start(0, nullptr, false);
+  // pBLEScan->start(scanTime, nullptr);
 }
 
 void loop() {
+  pBLEScan->start(scanTime, false); // Blocking scan for scanTime seconds
+  pBLEScan->clearResults();  // optional: clear memory
+  delay(100); // small pause before next scan
   // pBLEScan->start(scanTime, false);  // just start the scan
   // Serial.println("Scan done!");
-  delay(1000);
+  // delay(500);
 }
 
