@@ -6,7 +6,7 @@ This repository contains the open-source design files for a compact, self-powere
 
 ## Key Features
 
-- **Energy Harvesting Interface**: Compatible with the SECE (Synchronous Electric Charge Extraction) interface circuit andd the full bridge rectifier.
+- **Energy Harvesting Interface**: Compatible with the SECE (Synchronous Electric Charge Extraction) interface circuit and the full bridge rectifier.
 - **Three-Transistor Energy Management**: 
   - Adjustable regulation voltage thresholds (`V_ON` and `V_OFF`)
   - Regulated output voltage ~2.3V (suitable for most IoT SoCs)
