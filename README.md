@@ -1,6 +1,7 @@
 # Compact IoT Board for Electromechanical Metamaterials
 
 ![IoT Board](pics/PCB1.png) 
+
 This repository contains the open-source design files for a compact, self-powered IoT board featuring the SECE AC-DC interface circuit, the three-transistor energy management module for DC-DC conversion, and an ultra-low-power Bluetooth Beacon for sensing and transmission.
 
 ## Key Features
@@ -57,13 +58,14 @@ This repository contains the open-source design files for a compact, self-powere
    - Configure Bluetooth sniffer as needed
 
 ## Citation
+
 If you use this open-source design in your research or project, please cite the following papers: 
 - Zhao, Bao, et al. "EMetaNode: Electromechanical Metamaterial Node for Broadband Vibration Attenuation and Self-powered Sensing"
 - Teng, Li, et al. "A three-transistor energy management circuit for energy-harvesting-powered iot devices." IEEE Internet of Things Journal 11.1 (2023): 1301-1310.
 
 ## License
 
-[Specify your license here, e.g., MIT, Apache 2.0, etc.]
+This project is open-source under [MIT License].
 
 ## Contributing
 
