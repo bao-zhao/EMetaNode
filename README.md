@@ -61,7 +61,7 @@ This repository contains the open-source design files for a compact, self-powere
 
 If you use this open-source design in your research or project, please cite the following papers: 
 
-- Zhao, Bao, et al. "EMetaNode: Electromechanical Metamaterial Node for Broadband Vibration Attenuation and Self-powered Sensing"
+- Zhao, Bao, et al. "EMetaNode: Electromechanical Metamaterial Node for Broadband Vibration Attenuation and Self-powered Sensing." arXiv preprint arXiv:2506.02960 (2025).
 
 ## License
 
